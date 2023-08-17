@@ -4,9 +4,9 @@ services:
   node:
     build:
       context: ./node
-    image: wellintona/node
     entrypoint: dockerize -wait tcp://db:3306 -timeout 30s docker-entrypoint.sh
-    command: node app.js
+    command: >
+      sh -c "npm install && node app.js"
     container_name: node
     volumes:
       - ./node:/usr/src/app
